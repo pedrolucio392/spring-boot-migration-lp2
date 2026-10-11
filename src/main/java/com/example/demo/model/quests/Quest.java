@@ -1,0 +1,103 @@
+package com.example.demo.model.quests;
+
+import com.example.demo.model.equipment.Inventory;
+import com.example.demo.model.equipment.Item;
+
+import java.util.Objects;
+
+import com.example.demo.model.entities.enemies.Enemy;
+
+public class Quest {
+    private final String title;
+    private final String description;
+    private final Reward reward;
+    private final Item requiredItem;
+    private final Enemy targetEnemy;
+    private QuestState questState = QuestState.AVAILABLE;
+
+    public Quest(String title, String description, Reward reward, Item required_item, Enemy targetEnemy) {
+        if (title == null || title.isBlank())
+            throw new IllegalArgumentException("Title cannot be null or empty.");
+
+        this.title = title;
+        this.description = description;
+        this.reward = reward;
+        this.requiredItem = required_item;
+        this.targetEnemy = targetEnemy;
+    }
+
+    public void obtainQuest() {
+        if (this.questState != QuestState.AVAILABLE)
+            throw new IllegalStateException("You cannot obtain this quest right now.");
+
+        this.questState = QuestState.IN_PROGRESS;
+    }
+
+    public Reward completeQuest(Inventory<Item> inventory) {
+        if (this.questState != QuestState.IN_PROGRESS)
+            throw new IllegalStateException("You cannot complete a mission you have not obtained.");
+
+        if (!inventory.hasItem(requiredItem))
+            throw new IllegalStateException("Required item not yet obtained.");
+
+        this.questState = QuestState.COMPLETED;
+        inventory.removeItem(requiredItem);
+
+        return reward;
+    }
+
+    public void failQuest() {
+        if (this.questState != QuestState.IN_PROGRESS)
+            throw new IllegalStateException("Cannot fail a mission not in progress.");
+
+        this.questState = QuestState.FAILED;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Reward getReward() {
+        return reward;
+    }
+
+    public Item getRequiredItem() {
+        return requiredItem;
+    }
+
+    public QuestState getQuestState() {
+        return questState;
+    }
+
+    public Enemy getTargetEnemy() {
+        return targetEnemy;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+
+        Quest quest = (Quest) obj;
+        return Objects.equals(this.title, quest.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.title);
+    }
+
+    @Override
+    public String toString() {
+        return "Title: " + this.title + "\nDescription: " + this.description
+                + "\nquests.Reward: " + this.reward + "\nRequired item: " + this.requiredItem
+                + "\nState: " + this.questState;
+    }
+}

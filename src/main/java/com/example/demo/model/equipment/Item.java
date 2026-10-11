@@ -1,0 +1,69 @@
+package com.example.demo.model.equipment;
+
+import java.util.Objects;
+
+import com.example.demo.model.entities.Entity;
+
+public abstract class Item {
+    private final String name;
+    private final ItemType type;
+    private final Rarity rarity;
+
+    public Item(String name, ItemType type, Rarity rarity) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("equipment.Item name cannot be empty or null.");
+        }
+        if (type == null) {
+            throw new IllegalArgumentException("equipment.Item type cannot be null.");
+        }
+        if (rarity == null) {
+            throw new IllegalArgumentException("equipment.Item rarity cannot be null.");
+        }
+
+        this.name = name;
+        this.type = type;
+        this.rarity = rarity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ItemType getType() {
+        return type;
+    }
+
+    public Rarity getRarity() {
+        return rarity;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Item otherItem = (Item) obj;
+
+        return Objects.equals(this.name, otherItem.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
+    public void use(Entity entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'use'");
+    }
+}
