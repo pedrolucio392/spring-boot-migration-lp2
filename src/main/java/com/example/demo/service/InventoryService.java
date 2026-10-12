@@ -26,7 +26,7 @@ public class InventoryService {
         playerInventory.removeItem(item, quantity);
     }
 
-    public boolean hasItem(Item item) {
+    public Boolean hasItem(Item item) {
         return playerInventory.hasItem(item);
     }
 
