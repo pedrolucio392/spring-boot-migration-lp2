@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleItemNotFound(ItemNotFoundException ex) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body("Erro no Inventário: " + ex.getMessage());
+                .body("Inventory error: " + ex.getMessage());
     }
 
     // erros de validação devolve 400
@@ -22,6 +22,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException ex) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body("Erro de Validação: " + ex.getMessage());
+                .body("Validation error: " + ex.getMessage());
     }
 }
