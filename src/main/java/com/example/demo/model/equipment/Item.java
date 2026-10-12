@@ -1,13 +1,19 @@
 package com.example.demo.model.equipment;
 
 import java.util.Objects;
-
 import com.example.demo.model.entities.Entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public abstract class Item {
-    private final String name;
-    private final ItemType type;
-    private final Rarity rarity;
+    private String name;
+    private ItemType type;
+    private Rarity rarity;
 
     public Item(String name, ItemType type, Rarity rarity) {
         if (name == null || name.isBlank()) {
@@ -23,18 +29,6 @@ public abstract class Item {
         this.name = name;
         this.type = type;
         this.rarity = rarity;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public ItemType getType() {
-        return type;
-    }
-
-    public Rarity getRarity() {
-        return rarity;
     }
 
     @Override
@@ -63,7 +57,6 @@ public abstract class Item {
     }
 
     public void use(Entity entity) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'use'");
     }
 }

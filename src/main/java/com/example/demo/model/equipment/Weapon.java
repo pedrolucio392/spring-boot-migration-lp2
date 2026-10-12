@@ -1,7 +1,14 @@
 package com.example.demo.model.equipment;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class Weapon extends Item {
-    private final int damage;
+    private int damage;
 
     public Weapon(String name, ItemType type, Rarity rarity, int damage) {
         super(name, type, rarity);
@@ -9,9 +16,5 @@ public class Weapon extends Item {
             throw new IllegalArgumentException("Weapon damage cannot be negative.");
         }
         this.damage = damage;
-    }
-
-    public int getDamage() {
-        return damage;
     }
 }
