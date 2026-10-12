@@ -13,9 +13,9 @@ public class ItemController {
     private ItemService itemService;
 
     // POST
-    @PostMapping("/use/{nomeDoItem}")
-    public String useItem(@PathVariable String nomeDoItem) throws ItemNotFoundException {
-        itemService.usarItem(nomeDoItem);
-        return "Success! The item '" + nomeDoItem + "' was used and its effect applied.";
+    @PostMapping("/use/{itemName}")
+    public String useItem(@PathVariable String itemName) throws ItemNotFoundException {
+        itemService.useItem(itemName);
+        return "Success! The item '" + itemName + "' was used and its effect applied.";
     }
 }
