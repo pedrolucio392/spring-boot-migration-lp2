@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.Personagem;
+import com.example.demo.model.entities.Personagem;
 
 /**
  * PersonagemService
@@ -10,7 +10,7 @@ import com.example.demo.model.Personagem;
 @Service
 public class PersonagemService {
 
-    private final Personagem personagem = new Personagem("Guerreiro", 100);
+    private final Personagem personagem = new Personagem("Guerreiro", 100, 15, 10);
 
     public Personagem receberDano(int dano) {
 

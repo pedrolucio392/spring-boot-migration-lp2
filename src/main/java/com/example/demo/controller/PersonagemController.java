@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Personagem;
+import com.example.demo.model.entities.Personagem;
 import com.example.demo.service.PersonagemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

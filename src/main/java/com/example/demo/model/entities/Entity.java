@@ -2,6 +2,9 @@ package com.example.demo.model.entities;
 
 import com.example.demo.model.equipment.*;
 
+import lombok.Setter;
+
+@Setter 
 public abstract class Entity {
     private String name;
     private int damage;
