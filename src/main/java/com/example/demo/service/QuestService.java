@@ -36,8 +36,8 @@ public class QuestService {
         return quests.get(title);
     }
 
-    public Reward completeQuest(String questTitle) {
-        Quest quest = getQuestByTitle(questTitle);
+    public Reward completeQuest(String title) {
+        Quest quest = getQuestByTitle(title);
         if (quest == null) {
             throw new IllegalArgumentException("Quest not found.");
         }
