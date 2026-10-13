@@ -3,6 +3,9 @@ package com.example.demo.model.equipment;
 import java.util.Objects;
 import com.example.demo.model.entities.Entity;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +13,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Potion.class, name = "CONSUMABLE"),
+    @JsonSubTypes.Type(value = Weapon.class, name = "EQUIPMENT"),
+    @JsonSubTypes.Type(value = Collectible.class, name = "COLLECTIBLE")
+})
 public abstract class Item {
     private String name;
     private ItemType type;
