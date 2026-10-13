@@ -2,10 +2,12 @@ package com.example.demo.model.quests;
 
 import com.example.demo.model.equipment.Inventory;
 import com.example.demo.model.equipment.Item;
+import com.example.demo.model.entities.enemies.Enemy;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
-
-import com.example.demo.model.entities.enemies.Enemy;
 
 public class Quest {
     private final String title;
@@ -15,14 +17,20 @@ public class Quest {
     private final Enemy targetEnemy;
     private QuestState questState = QuestState.AVAILABLE;
 
-    public Quest(String title, String description, Reward reward, Item required_item, Enemy targetEnemy) {
+    @JsonCreator
+    public Quest(
+            @JsonProperty("title") String title,
+            @JsonProperty("description") String description,
+            @JsonProperty("reward") Reward reward,
+            @JsonProperty("requiredItem") Item requiredItem,
+            @JsonProperty("targetEnemy") Enemy targetEnemy) {
         if (title == null || title.isBlank())
             throw new IllegalArgumentException("Title cannot be null or empty.");
 
         this.title = title;
         this.description = description;
         this.reward = reward;
-        this.requiredItem = required_item;
+        this.requiredItem = requiredItem;
         this.targetEnemy = targetEnemy;
     }
 
